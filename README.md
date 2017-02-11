@@ -22,4 +22,4 @@ And then you just... use OpenGL.
 
 # Examples
 
-Examples will require that a [GLFW wrapper](https://github.com/FlorianRhiem/pyGLFW) (such as Flroian Rhiem's) is on the module path. This will likewise require GLFW to be accessible. Notice that the chosen wrapper uses its own naming conventions.
+Examples will require that a GLFW wrapper ([such as @FlorianRhiem's](https://github.com/FlorianRhiem/pyGLFW) is on the module path. This will likewise require [GLFW](http://www.glfw.org/download.html) to be accessible. Notice that the chosen wrapper uses its own naming conventions.
