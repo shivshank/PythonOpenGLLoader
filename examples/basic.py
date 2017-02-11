@@ -1,10 +1,12 @@
 from ctypes import * # c_int, c_float, c_double, c_uint, byref
-import demogllib as gl
 import sys
 import os
-os.chdir('..')
-sys.path.append('.')
 
+print('Changing CWD to parent directory')
+os.chdir('..')
+print('Adding ./ to Python module path')
+sys.path.append('.')
+import gl_generated_example as gl
 # I am using Florian Rhiem's GLFW binding, hence the GLFW function renaming
 # https://github.com/FlorianRhiem/pyGLFW/blob/master/glfw.py
 import glfw
