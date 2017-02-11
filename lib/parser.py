@@ -1,8 +1,14 @@
 import re
 import xml.etree.ElementTree as ET
 from . import model
+import io
+import requests
 
-tree = ET.parse('./khronos/gl.xml')
+print('Fetching gl.xml from khronos...')
+r = requests.get('https://cvs.khronos.org/svn/repos/ogl/trunk/doc/registry/public/api/gl.xml')
+print('Done.')
+tree = ET.parse(io.StringIO(r.text))
+# TODO: Make this not global... I really don't remember doing it this way...
 root = tree.getroot()
 
 enumCache = None
