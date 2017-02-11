@@ -31,7 +31,6 @@ class TestOpenGL1:
         gl.glMatrixMode(gl.GL_MODELVIEW)
         gl.glLoadIdentity()
         gl.glBegin(gl.GL_TRIANGLES)
-        # we only need to pass args on the first invocation
         gl.glColor3f(1, 0, 0)
         gl.glVertex3f(-0.6, -0.4, 0)
         gl.glColor3f(0, 1, 0)
@@ -41,6 +40,7 @@ class TestOpenGL1:
         gl.glEnd()
 
 class TestOpenGL2_1:
+    """ Basic 2.1 test using VBOs. Does not use any shaders. """
     def setup(self, window):
         # adapted from LWGL2's OpenGL3 tutorial (minus VAOs, hence it runs on 2.1)
         gl.glViewport(0, 0, 640, 480)
@@ -64,26 +64,20 @@ class TestOpenGL2_1:
             raise RuntimeError("Could not create VBO")
         gl.glBindBuffer(gl.GL_ARRAY_BUFFER, self.vbo)
         gl.glBufferData(gl.GL_ARRAY_BUFFER, self.vertexCount * 3 * 4,
-                        vertexCArray, gl.GL_STATIC_DRAW,
-                        argtypes=[c_int, c_int, vertexDataArrayType,
-                                  c_int])
+                        vertexCArray, gl.GL_STATIC_DRAW)
         gl.glBindBuffer(gl.GL_ARRAY_BUFFER, 0)
-
-        error = gl.glGetError(restype=c_uint)
+        error = gl.glGetError()
         if error:
             print('Errors:', error)
     def render(self):
         gl.glClear(gl.GL_COLOR_BUFFER_BIT)
         gl.glBindBuffer(gl.GL_ARRAY_BUFFER, self.vbo)
-        # declaring argtypes in a loop is very stupid but won't hurt in this case
         gl.glEnableVertexAttribArray(0)
         gl.glVertexAttribPointer(0, 3, gl.GL_FLOAT, False, 0, 0)
-        # vertex count is a global, see setup
         gl.glDrawArrays(gl.GL_TRIANGLES, 0, self.vertexCount)
         gl.glDisableVertexAttribArray(0)
         gl.glBindBuffer(gl.GL_ARRAY_BUFFER, 0)
-
-        error = gl.glGetError(restype=c_uint)
+        error = gl.glGetError()
         if error:
             print('Errors:', error)
 
