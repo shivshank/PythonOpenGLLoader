@@ -1,1 +1,7 @@
 __pycache__
+_khronos
+_lib-zip
+_glad_loader
+
+glfw.py
+glfw3.dll
