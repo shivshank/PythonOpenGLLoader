@@ -1544,7 +1544,7 @@ def __load_GL_VERSION_1_1(loader):
 	global glDrawElements
 	glDrawElements = _makeFunction(loader('glDrawElements'), None, c_uint, c_int, c_uint, c_void_p)
 	global glGetPointerv
-	glGetPointerv = _makeFunction(loader('glGetPointerv'), None, c_uint, c_void_p)
+	glGetPointerv = _makeFunction(loader('glGetPointerv'), None, c_uint, POINTER(c_void_p))
 	global glPolygonOffset
 	glPolygonOffset = _makeFunction(loader('glPolygonOffset'), None, c_float, c_float)
 	global glCopyTexImage1D
@@ -1719,7 +1719,7 @@ def __load_GL_VERSION_1_4(loader):
 	global glMultiDrawArrays
 	glMultiDrawArrays = _makeFunction(loader('glMultiDrawArrays'), None, c_uint, POINTER(c_int), POINTER(c_int), c_int)
 	global glMultiDrawElements
-	glMultiDrawElements = _makeFunction(loader('glMultiDrawElements'), None, c_uint, POINTER(c_int), c_uint, c_void_p, c_int)
+	glMultiDrawElements = _makeFunction(loader('glMultiDrawElements'), None, c_uint, POINTER(c_int), c_uint, POINTER(c_void_p), c_int)
 	global glPointParameterf
 	glPointParameterf = _makeFunction(loader('glPointParameterf'), None, c_uint, c_float)
 	global glPointParameterfv
@@ -1850,7 +1850,7 @@ def __load_GL_VERSION_1_5(loader):
 	global glGetBufferParameteriv
 	glGetBufferParameteriv = _makeFunction(loader('glGetBufferParameteriv'), None, c_uint, c_uint, POINTER(c_int))
 	global glGetBufferPointerv
-	glGetBufferPointerv = _makeFunction(loader('glGetBufferPointerv'), None, c_uint, c_uint, c_void_p)
+	glGetBufferPointerv = _makeFunction(loader('glGetBufferPointerv'), None, c_uint, c_uint, POINTER(c_void_p))
 
 def __load_GL_VERSION_2_0(loader):
 	if glVersion['major'] < 2 or (glVersion['major'] == 2
@@ -1917,7 +1917,7 @@ def __load_GL_VERSION_2_0(loader):
 	global glGetVertexAttribiv
 	glGetVertexAttribiv = _makeFunction(loader('glGetVertexAttribiv'), None, c_uint, c_uint, POINTER(c_int))
 	global glGetVertexAttribPointerv
-	glGetVertexAttribPointerv = _makeFunction(loader('glGetVertexAttribPointerv'), None, c_uint, c_uint, c_void_p)
+	glGetVertexAttribPointerv = _makeFunction(loader('glGetVertexAttribPointerv'), None, c_uint, c_uint, POINTER(c_void_p))
 	global glIsProgram
 	glIsProgram = _makeFunction(loader('glIsProgram'), c_bool, c_uint)
 	global glIsShader
@@ -1925,7 +1925,7 @@ def __load_GL_VERSION_2_0(loader):
 	global glLinkProgram
 	glLinkProgram = _makeFunction(loader('glLinkProgram'), None, c_uint)
 	global glShaderSource
-	glShaderSource = _makeFunction(loader('glShaderSource'), None, c_uint, c_int, c_char_p, POINTER(c_int))
+	glShaderSource = _makeFunction(loader('glShaderSource'), None, c_uint, c_int, POINTER(c_char_p), POINTER(c_int))
 	global glUseProgram
 	glUseProgram = _makeFunction(loader('glUseProgram'), None, c_uint)
 	global glUniform1f

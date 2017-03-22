@@ -154,11 +154,15 @@ def glTypeToPython(t):
     pyType = glTypes[t.name]
     if t.indirection > 0:
         try:
-            return {
+            special = {
                 'None': 'c_void_p',
                 'c_char': 'c_char_p'
             }[pyType]
+            if t.indirection == 1:
+                return special
+            indirection = t.indirection - 1
+            pyType = special
         except KeyError:
-            pass
-        return 'POINTER(' * t.indirection + pyType + ')' * t.indirection
+            indirection = t.indirection
+        return 'POINTER(' * indirection + pyType + ')' * indirection
     return pyType
